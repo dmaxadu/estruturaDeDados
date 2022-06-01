@@ -16,6 +16,10 @@ int mergeSort (int *v, int start, int end);
 
 int Merge (int *v, int start, int center, int end);
 
+int quickPartition (int *v, int start, int end);
+
+int quickSort (int *v, int start, int end);
+
 int main (int argc, char *argv[]){
     
     int n = atoi(argv[2]), i = 0, j = 0, tam = 0, aux = 0, t = 0;
@@ -49,7 +53,7 @@ int main (int argc, char *argv[]){
         /* cálculo do tempo de execução */
         t = clock();
         mergeSort(v, 0, n - 1);
-        t = clock() -t;
+        t = clock() - t;
         printf("---Merge Sort---\n");
         printf("Vetor ordenado!\n");
         printf("[ ");
@@ -62,7 +66,17 @@ int main (int argc, char *argv[]){
 
     /* quick sort */
     if(modo == 'q'){
-
+        /* cálculo do tempo de execução */
+        t = clock();
+        quickSort(v, 0, n -1);
+        t = clock() - t;
+        printf("Vetor ordenado!\n");
+        printf("[ ");
+        for(int i = 0; i < n; i++){
+            printf("%d ", v[i]);
+        }
+        printf("]\n");
+        printf("Tempo de execucao: %.4fs", ((double)t)/((CLOCKS_PER_SEC)));
     }
 
     return 0;
@@ -132,5 +146,35 @@ int Merge (int *v, int start, int center, int end){
         }
     }
     free(temp);
+    return 0;
+}
+
+int quickPartition (int *v, int start, int end){
+    int pivot = v[end];
+    int k = start;
+    int aux = 0, i = 0;
+
+    for (i = start; i < end; i++){
+        if (v[i] <= pivot){
+            aux = v[i];
+            v[i] = v[k];
+            v[k] = aux;
+            k++;
+        }
+    }
+
+    aux = v[k];
+    v[k] = v[end];
+    v[end] = aux;
+    return k;
+}
+
+int quickSort (int *v, int start, int end){
+    if (start < end){
+        int pivot = quickPartition(v, start, end);
+        quickSort(v, start, pivot - 1);
+        quickSort(v, pivot + 1, end);
+    }
+
     return 0;
 }

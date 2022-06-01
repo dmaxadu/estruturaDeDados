@@ -198,23 +198,10 @@ int main(){
     string number = "";
     string infix_expression, postfix_expression;
 
-    cout << " \033[31;1mInsira a expressão: \033[m";
+    cout << "\033[31;1mInsira a expressão: \033[m";
     cin >> infix_expression;
     postfix_expression = convert(infix_expression);
     
-    for(int i = 0; i < 12; i++){
-        if(postfix_expression.at(i) != ' '){
-            number += postfix_expression.at(i);
-        }
-        if(isOperator(postfix_expression.at(i))){
-            //calculate(stack1.pop(), stack1.pop(), postfix_expression.at(i));
-        }
-        else{
-           newNumber = stoi(number);
-           stack1.push(newNumber);
-        }
-    }
-    stack1.print();
-    cout << newNumber;
+    cout << postfix_expression;
     return 0;
 }
