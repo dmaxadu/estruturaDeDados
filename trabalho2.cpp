@@ -2,7 +2,7 @@
  * Programa: stackCalculator.cpp;
  * Autor: Daniel Machado;
  * DRE: 121046088;
- * Descrição: Utiliza a pilha pra calcular expressões;
+ * Descrição: Utiliza a pilha pra calcular expressões passadas através da entrada do usuário;
  */
 
 //A expressão deve ser inserida com espaço entre os números diferentes e os operadores, exemplo: 100 * ( 2 + 12 )
