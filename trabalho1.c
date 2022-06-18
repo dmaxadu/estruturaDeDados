@@ -2,7 +2,7 @@
  * Programa: AlgoritmosDeOrdenacao.c;
  * Autor: Daniel Machado;
  * DRE: 121046088;
- * Descrição: Executa os algoritmos de ordenação BubbleSort, MergeSort e QuickSort de acordo com os argumentos passados na linha de comando;
+ * Descrição: Executa os algoritmos de ordenação BubbleSort, MergeSort e QuickSort;
  */
 
 #include <stdio.h>
