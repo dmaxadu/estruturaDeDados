@@ -2,7 +2,7 @@
  * Programa: stackCalculator.cpp;
  * Autor: Daniel Machado;
  * DRE: 121046088;
- * Descrição: Utiliza a pilha pra calcular expressões passadas através da entrada do usuário;
+ * Descrição: Utiliza a pilha pra calcular expressões;
  */
 
 //A expressão deve ser inserida com espaço entre os números diferentes e os operadores, exemplo: 100 * ( 2 + 12 )
@@ -222,84 +222,84 @@ int applyOp(int a, int b, char op){
     return 0; 
 } 
   
-int evaluate(string tokens){ 
+int evaluate(string exp){ 
     int i; 
       
-    StackInt values; 
+    StackInt numbers; 
       
-    StackChar ops; 
+    StackChar operators; 
       
-    for(i = 0; i < tokens.length(); i++){ 
+    for(i = 0; i < exp.length(); i++){ 
           
-        if(tokens[i] == ' ') 
+        if(exp[i] == ' ') 
             continue; 
           
-        else if(tokens[i] == '('){ 
-            ops.push(tokens[i]); 
+        else if(exp[i] == '('){ 
+            operators.push(exp[i]); 
         } 
           
-        else if(isdigit(tokens[i])){ 
+        else if(isdigit(exp[i])){ 
             int val = 0; 
               
-            while(i < tokens.length() && isdigit(tokens[i])){ 
-                val = (val*10) + (tokens[i]-'0'); 
+            while(i < exp.length() && isdigit(exp[i])){ 
+                val = (val*10) + (exp[i]-'0'); 
                 i++; 
             } 
               
-            values.push(val); 
+            numbers.push(val); 
         } 
           
-        else if(tokens[i] == ')'){ 
+        else if(exp[i] == ')'){ 
             
-            while(!ops.empty() && ops.peek() != '('){ 
-                int val2 = values.peek(); 
-                values.pop(); 
+            while(!operators.empty() && operators.peek() != '('){ 
+                int val2 = numbers.peek(); 
+                numbers.pop(); 
                   
-                int val1 = values.peek(); 
-                values.pop(); 
+                int val1 = numbers.peek(); 
+                numbers.pop(); 
                   
-                char op = ops.peek(); 
-                ops.pop(); 
+                char op = operators.peek(); 
+                operators.pop(); 
                   
-                values.push(applyOp(val1, val2, op)); 
+                numbers.push(applyOp(val1, val2, op)); 
             } 
               
-            if(!ops.empty()) 
-               ops.pop(); 
+            if(!operators.empty()) 
+               operators.pop(); 
         } 
           
         else{ 
-            while(!ops.empty() && precedence(ops.peek()) >= precedence(tokens[i])){ 
-                int val2 = values.peek(); 
-                values.pop(); 
+            while(!operators.empty() && precedence(operators.peek()) >= precedence(exp[i])){ 
+                int val2 = numbers.peek(); 
+                numbers.pop(); 
                   
-                int val1 = values.peek(); 
-                values.pop(); 
+                int val1 = numbers.peek(); 
+                numbers.pop(); 
                   
-                char op = ops.peek(); 
-                ops.pop(); 
+                char op = operators.peek(); 
+                operators.pop(); 
                   
-                values.push(applyOp(val1, val2, op)); 
+                numbers.push(applyOp(val1, val2, op)); 
             } 
               
-            ops.push(tokens[i]); 
+            operators.push(exp[i]); 
         } 
     } 
       
-    while(!ops.empty()){ 
-        int val2 = values.peek(); 
-        values.pop(); 
+    while(!operators.empty()){ 
+        int val2 = numbers.peek(); 
+        numbers.pop(); 
                   
-        int val1 = values.peek(); 
-        values.pop(); 
+        int val1 = numbers.peek(); 
+        numbers.pop(); 
                   
-        char op = ops.peek(); 
-        ops.pop(); 
+        char op = operators.peek(); 
+        operators.pop(); 
                   
-        values.push(applyOp(val1, val2, op)); 
+        numbers.push(applyOp(val1, val2, op)); 
     } 
       
-    return values.peek(); 
+    return numbers.peek(); 
 } 
   
 int main(){ 
