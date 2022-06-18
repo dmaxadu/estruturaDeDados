@@ -20,6 +20,8 @@ using namespace std;
 
 const int maxItems = 100;
 
+/* Stack de Char */
+
 class StackChar{
     private:
     int top;
@@ -109,6 +111,8 @@ void StackChar::print(){
     }
     cout << "]\n";
 }
+
+/* Stack de Inteiros */
 
 class StackInt{
     private:
@@ -200,6 +204,8 @@ void StackInt::print(){
     cout << "]\n";
 }
 
+/* Funções necessárias para o cálculo da expressão */
+
 int precedence(char op){ 
     if(op == '+'||op == '-') 
         return 1; 
@@ -221,7 +227,9 @@ int applyOp(int a, int b, char op){
     }
     return 0; 
 } 
-  
+
+/* Função que faz o parse da expressão para que ela seja calculada */
+
 int evaluate(string exp){ 
     int i; 
       
