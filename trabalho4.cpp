@@ -1,3 +1,10 @@
+/* 
+ * Programa: KruskalAlgorithm.c;
+ * Autor: Daniel Machado;
+ * DRE: 121046088;
+ * Descrição: Executa o algoritmo de kruskal com union-find por rank e compressão de caminhos.
+ */
+
 #include <iostream>
 
 using namespace std;
