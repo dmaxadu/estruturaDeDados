@@ -1,0 +1,15 @@
+If you want to test the "trabalho4.cpp" wich is a kruskal algorithm with union-find by 
+rank and path compressions, use this txt as input at cmd, but before it delete these instructions.
+10 12
+1 2 1
+2 3 3
+3 4 1
+4 5 1
+5 6 4
+6 7 2
+7 8 1
+4 8 3
+8 9 2
+9 3 1
+9 10 1
+1 10 3
