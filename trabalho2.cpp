@@ -5,7 +5,7 @@
  * Descrição: Utiliza a pilha pra calcular expressões;
  */
 
-//A expressão deve ser inserida com espaço entre os números diferentes e os operadores, exemplo: 100 * ( 2 + 12 )
+//A expressão deve ser inserida com espaço entre os números diferentes e os operadores, exemplo: 100 * ( 2 + 12 ).
 
 #include <iostream>
 #include <string.h>
