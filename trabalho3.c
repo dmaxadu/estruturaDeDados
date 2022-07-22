@@ -1,3 +1,10 @@
+/* 
+ * Programa: top_sort_graph.c;
+ * Autor: Daniel Machado;
+ * DRE: 121046088;
+ * Descrição: Ordenação Topológica de um Grafo;
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
