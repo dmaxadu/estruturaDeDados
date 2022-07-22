@@ -22,6 +22,7 @@ class Graph{
         void addEdges(int v1, int v2, int weight);
         void sortEdges();
         void kruskal();
+        void print();
     private:
         int q_edges;
 
@@ -119,23 +120,80 @@ void Graph::kruskal(){
         }
     }
     cout << weight << endl;
+};
+
+void Graph::print(){
+    for(int i = 0; i < q_edges; i++){
+        cout << this->edges << endl;
+    }
 }
 
-int main(){
-    Graph g(10, 12);
-    g.init();
-    g.addEdges(1, 2, 1);
-    g.addEdges(2, 3, 3);
-    g.addEdges(3, 4, 1);
-    g.addEdges(4, 5, 1);
-    g.addEdges(5, 6, 4);
-    g.addEdges(6, 7, 2);
-    g.addEdges(7, 8, 1);
-    g.addEdges(4, 8, 3);
-    g.addEdges(8, 9, 2);
-    g.addEdges(9, 3, 1);
-    g.addEdges(9, 10, 1);
-    g.addEdges(1, 10, 3);
+int first_line_vertex(string input_line){
+    string q_vertex = "";
+    int i = 0;
+    while(input_line[i] != ' '){
+        q_vertex += input_line[i];
+        i++;
+    }
+    return stoi(q_vertex);
+};
 
+int first_line_edges(string input_line){
+    string q_edges = "";
+    int i = 0;
+    while (input_line[i] != ' '){
+        i++;
+    }
+    i++;
+    while(unsigned(i) < input_line.size()){
+        q_edges += input_line[i];
+        i++;
+    }
+    return stoi(q_edges);
+};
+
+int main(){
+    int q_vertex, q_edges;
+    string first_line = "";
+    getline(cin, first_line);
+    q_vertex = first_line_vertex(first_line);
+    q_edges = first_line_edges(first_line);
+    Graph g(q_vertex, q_edges);
+    g.init();
+    
+    for(int i = 0; i < q_edges; i++){
+        string input_line = "";
+        getline(cin, input_line);
+        string v1 = "";
+        string v2 = "";
+        string weight = "";
+        int j = 0;
+        int v1_int = 0;
+        int v2_int = 0;
+        int weight_int = 0;
+
+        while(input_line[j] != ' '){
+            v1 += input_line[j];
+            j++;
+        }
+        j++;
+
+        while(input_line[j] != ' '){
+            v2 += input_line[j];
+            j++;
+        }
+        j++;
+
+        while(unsigned(j) < input_line.size()){
+            weight += input_line[j];
+            j++;
+        }
+
+        v1_int = stoi(v1);
+        v2_int = stoi(v2);
+        weight_int = stoi(weight);
+        g.addEdges(v1_int, v2_int, weight_int);
+    }
+    
     g.kruskal();
 };
