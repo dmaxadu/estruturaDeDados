@@ -2,7 +2,7 @@
  * Programa: KruskalAlgorithm.c;
  * Autor: Daniel Machado;
  * DRE: 121046088;
- * Descrição: Executa o algoritmo de kruskal com union-find por rank e compressão de caminhos.
+ * Descrição: Executa o algoritmo de kruskal com union_find por rank e compressão de caminhos.
  */
 
 #include <iostream>
@@ -23,11 +23,11 @@ class Graph{
         int q_vertex, max_edges;
         Edge* edges;
         Graph(int q_vertex, int q_edge);
-        void init();
+        void init_graph();
         int find(int vertex);
-        void _union(int v1, int v2);
-        void addEdges(int v1, int v2, int weight);
-        void sortEdges();
+        void union_(int v1, int v2);
+        void add_edges(int v1, int v2, int weight);
+        void sort_edges();
         void kruskal();
         void print();
     private:
@@ -57,7 +57,7 @@ Graph::Graph(int q_vertex, int q_edges){
 
 };
 
-void Graph::init(){
+void Graph::init_graph(){
     for(int i = 0; i < q_vertex; i++){
         ranks[i] = 0;
         parents[i] = -100;
@@ -73,7 +73,7 @@ int Graph::find(int vertex){
     return parents[vertex];
 };
 
-void Graph::_union(int v1, int v2){
+void Graph::union_(int v1, int v2){
     int v1_find = find(v1);
     int v2_find = find(v2);
     if(v1_find == v2_find){
@@ -91,7 +91,7 @@ void Graph::_union(int v1, int v2){
     }
 };
 
-void Graph::addEdges(int v1, int v2, int weight){
+void Graph::add_edges(int v1, int v2, int weight){
     if(q_edges == max_edges){
         return;
     }
@@ -101,7 +101,7 @@ void Graph::addEdges(int v1, int v2, int weight){
     }
 };
 
-void Graph::sortEdges(){
+void Graph::sort_edges(){
     for(int i = 0; i < q_edges; i++){
         for(int j = 0; j < q_edges; j++){
             if(edges[i].weight < edges[j].weight){
@@ -114,7 +114,7 @@ void Graph::sortEdges(){
 };
 
 void Graph::kruskal(){
-    this->sortEdges();
+    this->sort_edges();
     int weight = 0;
     int v1, v2;
     for(int i = 0; i < q_edges; i++){
@@ -123,7 +123,7 @@ void Graph::kruskal(){
 
         if(v1 != v2){
             weight += edges[i].weight;
-            _union(v1, v2);
+            union_(v1, v2);
         }
     }
     cout << weight << endl;
@@ -166,7 +166,7 @@ int main(){
     q_vertex = first_line_vertex(first_line);
     q_edges = first_line_edges(first_line);
     Graph g(q_vertex, q_edges);
-    g.init();
+    g.init_graph();
     
     for(int i = 0; i < q_edges; i++){
         string input_line = "";
@@ -199,7 +199,7 @@ int main(){
         v1_int = stoi(v1);
         v2_int = stoi(v2);
         weight_int = stoi(weight);
-        g.addEdges(v1_int, v2_int, weight_int);
+        g.add_edges(v1_int, v2_int, weight_int);
     }
     
     g.kruskal();
